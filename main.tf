@@ -16,7 +16,8 @@ provider "aws" {
 
 
 module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "5.19.0"
 
   name = "my-vpc"
   cidr = "10.0.0.0/16"
@@ -29,7 +30,33 @@ module "vpc" {
   enable_vpn_gateway = true
 
   tags = {
-    Terraform = "true"
+    Terraform   = "true"
     Environment = "dev"
+  }
+}
+
+module "eks" {
+  source  = "terraform-aws-modules/eks/aws"
+  version = "20.8.5"
+
+  cluster_name    = "my-eks"
+  cluster_version = "1.29"
+
+  enable_cluster_creator_admin_permissions = true
+
+  subnet_ids = module.vpc.private_subnets
+  vpc_id     = module.vpc.default_vpc_id
+
+  cluster_endpoint_public_access = true
+
+  eks_managed_node_groups = {
+
+    default = {
+      min_size       = 2
+      max_size       = 2
+      desired_size   = 2
+      instance_types = ["t3.small"]
+    }
+
   }
 }
