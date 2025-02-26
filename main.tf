@@ -14,6 +14,7 @@ module "vpc" {
   tags = {
     Terraform   = "true"
     Environment = "dev"
+    "kubernetes.io/cluster/${var.aws_eks_name}" = "shared"
   }
 
   public_subnet_tags = {
@@ -21,6 +22,10 @@ module "vpc" {
     "kubernetes.io/role/elb"                    = 1
   }
 
+  private_subnet_tags = {
+    "kubernetes.io/cluster/${var.aws_eks_name}" = "shared"
+    "kubernetes.io/role/internal-elb"                    = 1
+  }
 }
 
 module "eks" {
