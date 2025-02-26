@@ -51,8 +51,3 @@ AWS_BUCKET_NAME => Nome do Bucket utilizado para armazenar o estado do projeto T
 
 AWS_BUCKET_FILE => Nome do arquivo utilizado para armazenar o estado do projeto Terraform.
 
-## Estrutura da solução
-
-![Diagrama do projeto](./diagramas/pipeline.drawio.png)
-
-Explicação do Fluxo
