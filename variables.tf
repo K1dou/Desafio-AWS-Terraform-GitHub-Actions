@@ -47,7 +47,7 @@ variable "aws_eks_version" {
 
 variable "aws_eks_managed_node_groups_instance_types" {
   description = ""
-  type        = set(string)
+  type        = list(string)
   nullable    = false
 }
 
