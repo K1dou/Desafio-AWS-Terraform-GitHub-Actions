@@ -49,5 +49,6 @@ variable "aws_eks_managed_node_groups_instance_types" {
   description = ""
   type        = list(string)
   nullable    = false
+  default     = ["t3.small"]
 }
 
