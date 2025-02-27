@@ -51,3 +51,6 @@ variable "aws_eks_managed_node_groups_instance_types" {
   nullable    = false
 }
 
+variable "teste" {
+  
+}
