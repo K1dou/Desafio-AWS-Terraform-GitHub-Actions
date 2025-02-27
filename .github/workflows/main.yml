@@ -24,7 +24,7 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: "Terraform Init"
-        run: terraform init
+        run: terraform init -backend-config="bucket=devop-s" -backend-config="key=desafio/terraform.tfstate" -backend-config="region=us-east-1"
 
       - name: "Terraform Apply"
         run: terraform apply -auto-approve
